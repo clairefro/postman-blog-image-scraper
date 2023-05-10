@@ -63,7 +63,6 @@ const downloadBlogImages = async () => {
             `Unexpected response status ${imageResponse.status} ${imageResponse.statusText}`
           );
         }
-        // const buffer = await imageResponse.buffer();
         const fileStream = fs.createWriteStream(outputPath);
         response.body.pipe(fileStream);
         await new Promise((resolve, reject) => {
