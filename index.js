@@ -27,7 +27,6 @@ const fetchImages = async (imageUrl, outpath) => {
 };
 
 const downloadBlogImages = async (url) => {
-  console.log({ url });
   try {
     const response = await fetch(url);
 
