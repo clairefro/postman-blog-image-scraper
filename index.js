@@ -4,7 +4,6 @@ import { load } from "cheerio";
 import fs from "fs";
 import path from "path";
 
-const url = "https://blog.postman.com/";
 const outputDir = "./images"; // local dir to save images
 
 const fetchImages = async (imageUrl, outpath) => {
@@ -27,7 +26,8 @@ const fetchImages = async (imageUrl, outpath) => {
   }
 };
 
-const downloadBlogImages = async () => {
+const downloadBlogImages = async (url) => {
+  console.log({ url });
   try {
     const response = await fetch(url);
 
@@ -79,4 +79,14 @@ const downloadBlogImages = async () => {
   }
 };
 
-downloadBlogImages();
+const run = () => {
+  const baseUrl = `https://blog.postman.com/postspage/page/`;
+
+  /** iterate through 65 pages - styles get old around here */
+  for (let i = 0; i < 65; i++) {
+    const url = baseUrl + (i + 1);
+    downloadBlogImages(url);
+  }
+};
+
+run();
